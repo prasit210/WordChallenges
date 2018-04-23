@@ -6,4 +6,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="input_id">Please Input Username...</string>
+    <string name="input_pw">Please Input Password...</string>
+
+    <string name="btnAccept">Sign In</string>
+    <string name="btnRegister">Register</string>
+
+    <string name="facebook_app_id">2471261846233194</string>
+    <string name="fb_login_protocol_scheme">fb2471261846233194</string>
 </resources>

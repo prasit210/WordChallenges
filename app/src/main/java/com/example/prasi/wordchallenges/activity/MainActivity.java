@@ -1,5 +1,8 @@
 package com.example.prasi.wordchallenges.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,18 +15,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.prasi.wordchallenges.R;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private SharedPreferences sharedPreferences;
+    private ImageView imgNavHeader;
+    private TextView txtName,txtEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sharedPreferences = getSharedPreferences("LOGIN_FB", Context.MODE_PRIVATE);
+
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +56,18 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+        imgNavHeader = (ImageView)view.findViewById(R.id.imgNavHead);
+        txtName = (TextView)view.findViewById(R.id.txtNameNav);
+        txtEmail = (TextView)view.findViewById(R.id.txtNavEmail);
+        setNavbarHeader();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void setNavbarHeader() {
+        Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
+        txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
+        txtEmail.setText(sharedPreferences.getString("Email","").toString());
     }
 
     @Override
@@ -92,8 +118,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+            sharedPreferences.edit().clear().commit();
+            LoginManager.getInstance().logOut();
+            AccessToken.setCurrentAccessToken(null);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
