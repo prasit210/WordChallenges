@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "348525012492",
+    "firebase_url": "https://wordchallenge-1ebf2.firebaseio.com",
+    "project_id": "wordchallenge-1ebf2",
+    "storage_bucket": "wordchallenge-1ebf2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348525012492:android:02a9fbf3933e0c74",
+        "android_client_info": {
+          "package_name": "com.example.prasi.wordchallenges"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348525012492-e4j6oh94nmmalb571uaqh71a0i6ubsuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prasi.wordchallenges",
+            "certificate_hash": "f169fe9b0b6d318043531cc1fd35879d64c14be4"
+          }
+        },
+        {
+          "client_id": "348525012492-1bg71943bhkc8t3ppglhaduv4b46kh73.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHg3yyJoA1Pi0nvRYwPLa0CmXLGggKdAY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348525012492-1bg71943bhkc8t3ppglhaduv4b46kh73.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

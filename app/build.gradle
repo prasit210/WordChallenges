@@ -27,19 +27,21 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.firebase:firebase-auth:15.0.0'
+    implementation 'com.google.firebase:firebase-firestore:15.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
-configurations.all{
-    resolutionStrategy.eachDependency{
+configurations.all {
+    resolutionStrategy.eachDependency {
         DependencyResolveDetails details ->
             def requested = details.requested
-            if(requested.group == 'com.android,support')
-            {
-                if(!requested.name.startWith("multidex")){
+            if (requested.group == 'com.android,support') {
+                if (!requested.name.startWith("multidex")) {
                     details.useVersion '25.3.0'
                 }
             }
     }
 }
+apply plugin: 'com.google.gms.google-services'

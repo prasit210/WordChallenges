@@ -15,4 +15,9 @@
 
     <string name="facebook_app_id">2471261846233194</string>
     <string name="fb_login_protocol_scheme">fb2471261846233194</string>
+
+    <string-array name="coutry">
+        <item name="Thai">Thai</item>
+        <item name="English">English</item>
+    </string-array>
 </resources>

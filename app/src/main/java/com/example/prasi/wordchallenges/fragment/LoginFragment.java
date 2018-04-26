@@ -33,6 +33,7 @@ import com.facebook.appevents.AppEventsLogger;
 public class LoginFragment extends Fragment {
     private CallbackManager callbackManager;
     private LoginButton loginButton;
+    private Button btnLogin,btnRegister;
     private ImageView imageView;
     private SharedPreferences sharedPreferences;
     public LoginFragment() {
@@ -55,6 +56,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
+        btnLogin = (Button)rootView.findViewById(R.id.btnAccept);
+        btnRegister = (Button)rootView.findViewById(R.id.btnToRegister);
         imageView = (ImageView)rootView.findViewById(R.id.imageView3);
         loginButton = (LoginButton)rootView.findViewById(R.id.login_button);
         loginButton.setReadPermissions("email","public_profile");
@@ -88,6 +91,20 @@ public class LoginFragment extends Fragment {
             }
         });
         // Init 'View' instance(s) with rootView.findViewById here
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(),"GGE",Toast.LENGTH_LONG).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new RegisterFragment()).commit();
+            }
+        });
     }
     public void displayUserInfo(JSONObject object) {
         String fist_name = "",last_name = "",email = "",id = " ";
