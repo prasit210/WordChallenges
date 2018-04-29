@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language">English</string>
+    <string name="addword">Add Word</string>
+    <string name="checkword">History</string>
+    <string name="example">Example</string>
+    <string name="achivement">Achivement</string>
+    <string name="other">Other</string>
+    <string name="setting">Setting</string>
+    <string name="support">Support</string>
+    <string name="logout">Log out</string>
+    <string name="change_language">Change Language</string>
+
+    <!-- Login Fragment -->
+    <string name="input_username">Please Input Username...</string>
+    <string name="input_password">Please Input Password...</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+
+    <!-- For Spinner Register-->
+    <string-array name="coutry">
+        <item name="Thai">Thai</item>
+        <item name="English">English</item>
+    </string-array>
+
+    <!-- Add Word Pager -->
+    <string name="add_word_pager">Add Word</string>
+    <string name="add_word_today_pager">Add Today</string>
+    <string name="add_word_english">English</string>
+    <string name="add_word_translate">Translate</string>
+    <string name="add_word_thai">Thai</string>
+    <string name="add_word_type">Type</string>
+    <string name="add_word_accecpt">Accept</string>
+    <string-array name="speech">
+        <item name="type">--- Select part of speech ---</item>
+        <item name="noun">Noun</item>
+        <item name="pronoun ">Pronoun</item>
+        <item name="verb">Verb</item>
+        <item name="adjective">Adjective</item>
+        <item name="adverb">Adverb</item>
+        <item name="preposition">Preposition</item>
+        <item name="conjunction">Conjunction</item>
+        <item name="interjection">Interjection</item>
+    </string-array>
+
+    <!--  -->
+
+    <!--      Dialog      -->
+    <string name="title_dialog">You want to change language?</string>
+    <string name="subtitle_dialog">Change language English to ไทย</string>
+    <string name="apply">Apply</string>
+    <string name="dismiss">Dismiss</string>
+</resources>

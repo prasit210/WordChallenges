@@ -5,33 +5,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_addword"
+            android:icon="@drawable/ic_add"
+            android:title="@string/addword" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_checkword"
+            android:icon="@drawable/ic_history"
+            android:title="@string/checkword" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_example"
+            android:icon="@drawable/ic_book"
+            android:title="@string/example" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_achivement"
+            android:icon="@drawable/ic_archive"
+            android:title="@string/achivement" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/other">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/setting" />
+            <item
+                android:id="@+id/nav_support"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/support" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_power"
-                android:title="Log out" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

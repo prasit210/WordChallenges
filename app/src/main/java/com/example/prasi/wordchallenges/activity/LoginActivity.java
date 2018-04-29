@@ -27,16 +27,15 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
-
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().add(R.id.container,new LoginFragment()).commit();
         }
-        checkFirstRun();
+        //checkFirstRun();
 
     }
 
     private void checkFirstRun() {
-        sp = getSharedPreferences("LOGIN_FB", Context.MODE_PRIVATE);
+        sp = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
         //Toast.makeText(getApplicationContext(),sp.getString("Name",""),Toast.LENGTH_LONG).show();
 
         if (sp.getBoolean("Status",false) == true){

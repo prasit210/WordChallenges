@@ -4,50 +4,40 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.bumptech.glide.Glide;
 import com.example.prasi.wordchallenges.R;
+import com.example.prasi.wordchallenges.fragment.AddFragment.AddWordPagerFragment;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends LocalizationActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SharedPreferences sharedPreferences;
     private ImageView imgNavHeader;
     private TextView txtName,txtEmail;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        setDefaultLanguage("en");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sharedPreferences = getSharedPreferences("LOGIN_FB", Context.MODE_PRIVATE);
-
-
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.containerMain,new AddWordPagerFragment()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -65,9 +55,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setNavbarHeader() {
-        Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
-        txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
-        txtEmail.setText(sharedPreferences.getString("Email","").toString());
+        if (sharedPreferences.getString("Type","").equals("Facebook")){
+            Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
+            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
+            txtEmail.setText(sharedPreferences.getString("Email","").toString());
+        }else {
+            //Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
+            imgNavHeader.setImageResource(R.drawable.ic_launcher);
+            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
+            txtEmail.setText(sharedPreferences.getString("Email","").toString());
+        }
+
     }
 
     @Override
@@ -108,17 +106,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_addword) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_checkword) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_example) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_achivement) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_setting) {
+            Intent intent = new Intent(getApplicationContext(),SettingActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_support){
 
-        } else if (id == R.id.nav_logout) {
+        }
+        else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
             sharedPreferences.edit().clear().commit();
             LoginManager.getInstance().logOut();

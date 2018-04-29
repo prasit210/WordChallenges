@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation Menu -->
+    <string name="language">ไทย</string>
+    <string name="addword">เพิ่มคำศัพท์</string>
+    <string name="checkword">ดูคำศัพท์</string>
+    <string name="example">แบบฝึกหัด</string>
+    <string name="achivement">รางวัล</string>
+    <string name="setting">ตั้งค่า</string>
+    <string name="other">อื่นๆ</string>
+    <string name="support">สนับสนุน</string>
+    <string name="logout">ออกจากระบบ</string>
+
+    <!-- Setting Activity -->
+    <string name="change_language">คุณต้องการเปลี่ยนภาษาหรือไม่</string>
+
+    <!-- Login Fragment -->
+    <string name="input_username">กรุณากรอกไอดี</string>
+    <string name="input_password">กรุณากรอกพาสเวิร์ด</string>
+    <string name="sign_in">เข้าสู่ระบบ</string>
+    <string name="register">สมัครสมาชิก</string>
+
+    <!-- For Spinner Register-->
+    <string-array name="coutry">
+        <item name="Thai">ไทย</item>
+        <item name="English">อังกฤษ</item>
+    </string-array>
+
+    <!-- Add Word Pager -->
+    <string name="add_word_pager">เพิ่มคำศัพท์</string>
+    <string name="add_word_today_pager">คำศัพท์ที่เพิ่มแล้ววันนี้</string>
+    <string name="add_word_english">อังกฤษ</string>
+    <string name="add_word_translate">แปลว่า</string>
+    <string name="add_word_thai">ไทย</string>
+    <string name="add_word_type">ประเภท</string>
+    <string name="add_word_accecpt">บันทึก</string>
+    <string-array name="speech">
+        <item name="type">--- เลือกชนิดของคำ ---</item>
+        <item name="noun">คำนาม</item>
+        <item name="pronoun ">คำสรรพนาม</item>
+        <item name="verb">คำกริยา</item>
+        <item name="adjective">คำคุณศัพท์</item>
+        <item name="adverb">คำกริยาวิเศษณ์</item>
+        <item name="preposition">คำบุพบท</item>
+        <item name="conjunction">คำเชื่อม</item>
+        <item name="interjection">คำอุทาน</item>
+    </string-array>
+
+    <!-- Dialog -->
+    <string name="title_dialog">คุณต้องการเปลี่ยนภาษาหรือไม่?</string>
+    <string name="subtitle_dialog">Change language ไทย to English</string>
+    <string name="apply">Apply</string>
+    <string name="dismiss">Dismiss</string>
+
+
+</resources>

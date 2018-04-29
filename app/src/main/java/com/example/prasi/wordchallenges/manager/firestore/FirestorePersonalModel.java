@@ -1,13 +1,12 @@
 package com.example.prasi.wordchallenges.manager.firestore;
 
-public class FirestoreModel {
+public class FirestorePersonalModel {
     private String password, name, lastname ,tel ,coutry ,dateregister = "";
 
-    public FirestoreModel() {
-
+    public FirestorePersonalModel() {
     }
 
-    public FirestoreModel(String password, String name, String lastname, String tel, String coutry, String dateregister) {
+    public FirestorePersonalModel(String password, String name, String lastname, String tel, String coutry, String dateregister) {
         this.password = password;
         this.name = name;
         this.lastname = lastname;

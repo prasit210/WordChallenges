@@ -1,5 +1,6 @@
 package com.example.prasi.wordchallenges.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.prasi.wordchallenges.R;
+import com.example.prasi.wordchallenges.activity.LoginActivity;
 import com.example.prasi.wordchallenges.manager.firestore.FirestoreManager;
 
 import java.security.Timestamp;
@@ -22,7 +24,7 @@ import java.util.Date;
 public class RegisterFragment extends Fragment {
     private EditText edtEmail,edtPswords1,edtPswords2,edtName,edtLastname,edtTel,edtCoutry;
     private Spinner spinner;
-    private Button btnAccept;
+    private Button btnAccept,btnCancel;
     private FirestoreManager firestoreManager;
     private Timestamp timestamp;
     private String email,pass1,pass2,name,lastname,tel,coutry,time,result;
@@ -51,6 +53,7 @@ public class RegisterFragment extends Fragment {
         firestoreManager = new FirestoreManager();
         spinner = (Spinner)rootView.findViewById(R.id.spCoutry);
         btnAccept = (Button)rootView.findViewById(R.id.btnAccepRegister);
+        btnCancel =(Button)rootView.findViewById(R.id.btnCancelRegister);
         edtEmail = (EditText)rootView.findViewById(R.id.edtRegister1);
         edtPswords1 = (EditText)rootView.findViewById(R.id.edtRegister2);
         edtPswords2 = (EditText)rootView.findViewById(R.id.edtRegister2and3);
@@ -69,11 +72,21 @@ public class RegisterFragment extends Fragment {
                 insertToFirestore();
             }
         });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container,new LoginFragment()).commit();
+            }
+        });
     }
 
     private void insertToFirestore() {
+
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/YYYY HH:mm a");
+        time = format.format(date);
+
+
         email = edtEmail.getText().toString().trim();
         pass1 = edtPswords1.getText().toString().trim();
         pass2 = edtPswords2.getText().toString().trim();
@@ -81,7 +94,7 @@ public class RegisterFragment extends Fragment {
         lastname = edtLastname.getText().toString().trim();
         tel = edtTel.getText().toString().trim();
         coutry = spinner.getSelectedItem().toString();
-        time = format.format(date);
+
 
         if (email.matches("") || pass1.matches("") || pass2.matches("") || name.matches("") || lastname.matches("") || tel.matches("")){
             Toast.makeText(getActivity(),"Please Input Text", Toast.LENGTH_SHORT).show();
@@ -89,13 +102,13 @@ public class RegisterFragment extends Fragment {
             if (pass1.equals(pass2)){
                 result = firestoreManager.RegisterInFirestore(email,pass1,name,lastname,tel,coutry,time);
                 if (result == null){
-
                     Toast.makeText(getActivity(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
                     getActivity().finish();
                 }else {
                     Toast.makeText(getActivity(),"FAIL",Toast.LENGTH_SHORT).show();
                 }
-
             }else {
                 Toast.makeText(getActivity(),"Fail",Toast.LENGTH_SHORT).show();
             }
