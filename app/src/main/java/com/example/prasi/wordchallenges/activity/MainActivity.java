@@ -14,11 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.bumptech.glide.Glide;
 import com.example.prasi.wordchallenges.R;
+import com.example.prasi.wordchallenges.fragment.AddFragment.AddWordFragment;
 import com.example.prasi.wordchallenges.fragment.AddFragment.AddWordPagerFragment;
+import com.example.prasi.wordchallenges.fragment.GGWP;
+import com.example.prasi.wordchallenges.fragment.checkword.WordHistory;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 
@@ -34,10 +38,17 @@ public class MainActivity extends LocalizationActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+
         if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().add(R.id.containerMain,new AddWordPagerFragment()).commit();
+            sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containerMain,
+                            new AddWordPagerFragment())
+                    .commit();
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,13 +67,21 @@ public class MainActivity extends LocalizationActivity
 
     private void setNavbarHeader() {
         if (sharedPreferences.getString("Type","").equals("Facebook")){
-            Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
-            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
+
+            Glide.with(this).load("https://graph.facebook.com/" +
+                    sharedPreferences.getString("ID","") + "/picture?type=large")
+                    .into(imgNavHeader);
+
+            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+
+                    sharedPreferences.getString("Surname","").toString());
             txtEmail.setText(sharedPreferences.getString("Email","").toString());
         }else {
             //Glide.with(this).load("https://graph.facebook.com/" + sharedPreferences.getString("ID","") + "/picture?type=large").into(imgNavHeader);
             imgNavHeader.setImageResource(R.drawable.ic_launcher);
-            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+sharedPreferences.getString("Surname","").toString());
+
+            txtName.setText(sharedPreferences.getString("Name","").toString()+" "+
+                    sharedPreferences.getString("Surname","").toString());
+
             txtEmail.setText(sharedPreferences.getString("Email","").toString());
         }
 
@@ -107,11 +126,23 @@ public class MainActivity extends LocalizationActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_addword) {
-            // Handle the camera action
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containerMain,
+                            new AddWordPagerFragment())
+                    .commit();
         } else if (id == R.id.nav_checkword) {
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containerMain,
+                            new WordHistory())
+                    .commit();
         } else if (id == R.id.nav_example) {
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containerMain,
+                            new GGWP())
+                    .commit();
         } else if (id == R.id.nav_achivement) {
 
         } else if (id == R.id.nav_setting) {

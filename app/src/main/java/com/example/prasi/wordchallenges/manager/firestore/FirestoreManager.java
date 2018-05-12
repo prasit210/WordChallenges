@@ -53,11 +53,14 @@ public class FirestoreManager extends FirestorePersonalModel {
         personRegister.put("tel",tel);
         personRegister.put("coutry",coutry);
         personRegister.put("dateregister",time);
+
         firestore.collection("WordChallenge").document("Users").collection(email).document("PersonDetail").set(personRegister, SetOptions.merge());
+
         return null;
     }
 
     public String RegisterInFirestoreWithFacebook(String email,String name,String lastname,String id,String time){
+
         firestore = FirebaseFirestore.getInstance();
         Map<String,Object> personRegister = new HashMap<>();
         personRegister.put("logintype","Facebook");
@@ -67,19 +70,23 @@ public class FirestoreManager extends FirestorePersonalModel {
         personRegister.put("id",id);
         personRegister.put("dateregister",time);
         firestore.collection("WordChallenge").document("Users").collection(email).document("PersonDetail").set(personRegister, SetOptions.merge());
+
         return null;
     }
 
     public String addTextCollaction(String eng,String th,String email,String type,Context context){
         sharedPreferences = context.getSharedPreferences("ADD",Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
         firestore = FirebaseFirestore.getInstance();
 
+        //Date For Check Clear List
         date = Calendar.getInstance().getTime();
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dates = simpleDateFormat.format(date);
         editor.putString("Date",dates);
 
+        //Date For Firestore
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/YYYY HH:mm a");
         time = format.format(date);
@@ -87,27 +94,52 @@ public class FirestoreManager extends FirestorePersonalModel {
         if(firestore != null){
             //นับจำนวนว่าครบ 10 แล้วหรือยัง?
             int count_add = sharedPreferences.getInt("ID",1);
+
+            if (count_add == 1){
+                addDateBoolean(dates,email);
+            }
+
             if(count_add == 11){
                 Toast.makeText(context,"Full",Toast.LENGTH_SHORT).show();
                 editor.putString("Status","1");
                 editor.commit();
+
             }else if (count_add < 11){
+
                 Map<String,Object> text = new HashMap<>();
                 text.put("id",count_add);
                 text.put("eng",eng);
                 text.put("th",th);
                 text.put("type",type);
                 text.put("daterecord",time);
-                firestore.collection("WordChallenge").document("Users").collection(email).document("Texttotrans").collection(dates).document(String.valueOf(count_add)).set(text,SetOptions.merge());
+
+                firestore.collection("WordChallenge")
+                        .document("Users")
+                        .collection(email)
+                        .document("Texttotrans")
+                        .collection(dates)
+                        .document(String.valueOf(count_add))
+                        .set(text,SetOptions.merge());
+
                 editor.putInt("ID",++count_add);
                 editor.putString("Status","0");
                 editor.commit();
+
                 Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
             }
-
         }
         return null;
     }
 
+    private void addDateBoolean(String dates,String email){
+
+        Map<String,Boolean> date = new HashMap<>();
+        date.put(dates,true);
+        firestore.collection("WordChallenge")
+                .document("Users")
+                .collection(email)
+                .document("Texttotrans")
+               .set(date,SetOptions.merge());
+    }
 
 }

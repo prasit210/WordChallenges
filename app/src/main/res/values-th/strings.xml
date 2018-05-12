@@ -52,5 +52,8 @@
     <string name="apply">Apply</string>
     <string name="dismiss">Dismiss</string>
 
+    <!-- Dialog For Add Fragment -->
+    <string name="add_title">ข้อความ</string>
+    <string name="add_dialog_button_ok">ตกลง</string>
 
 </resources>

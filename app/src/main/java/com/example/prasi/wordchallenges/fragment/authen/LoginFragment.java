@@ -1,4 +1,4 @@
-package com.example.prasi.wordchallenges.fragment;
+package com.example.prasi.wordchallenges.fragment.authen;
 
 import android.content.Context;
 import android.content.Intent;
@@ -151,7 +151,7 @@ public class LoginFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 if (documentSnapshot != null && documentSnapshot.exists()) {
-                                    Log.d("GGWP", "DocumentSnapshot data: " + documentSnapshot.getData());
+                                    Log.d("Status", "DocumentSnapshot data: " + documentSnapshot.getData());
                                     if (email.equals(documentSnapshot.getString("email")) && password.equals(documentSnapshot.getString("password"))) {
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
                                         editor.putBoolean("Status", true);

@@ -1,12 +1,12 @@
 package com.example.prasi.wordchallenges.manager.firestore;
 
 public class FirestoreTransModel {
-   private String id,eng,th,type,daterecord;
-
+   private String eng,th,type,daterecord;
+   private int id;
     public FirestoreTransModel() {
     }
 
-    public FirestoreTransModel(String id, String eng, String th, String type, String daterecord) {
+    public FirestoreTransModel(Integer id, String eng, String th, String type, String daterecord) {
         this.id = id;
         this.eng = eng;
         this.th = th;
@@ -14,11 +14,11 @@ public class FirestoreTransModel {
         this.daterecord = daterecord;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

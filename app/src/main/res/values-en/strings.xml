@@ -45,9 +45,14 @@
 
     <!--  -->
 
-    <!--      Dialog      -->
+    <!--      Dialog For Change Language     -->
     <string name="title_dialog">You want to change language?</string>
     <string name="subtitle_dialog">Change language English to ไทย</string>
     <string name="apply">Apply</string>
     <string name="dismiss">Dismiss</string>
+
+    <!-- Dialog For Add Fragment -->
+    <string name="add_title">Message</string>
+    <string name="add_dialog_button_ok">OK</string>
+
 </resources>

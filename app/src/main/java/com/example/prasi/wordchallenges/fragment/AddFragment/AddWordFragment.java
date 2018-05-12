@@ -44,7 +44,7 @@ public class AddWordFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_addword, container, false);
         initInstances(rootView);
-        //checkCountText();
+        checkCountText();
         return rootView;
     }
 
@@ -56,6 +56,7 @@ public class AddWordFragment extends Fragment {
         edtAddThai = rootView.findViewById(R.id.edtAddThai);
         edtAddEnglish = rootView.findViewById(R.id.edtAddEnglish);
         spinner = rootView.findViewById(R.id.spinSpeech);
+
         String[] speech = getResources().getStringArray(R.array.speech);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.support_simple_spinner_dropdown_item,speech);
         spinner.setAdapter(arrayAdapter);
@@ -72,24 +73,30 @@ public class AddWordFragment extends Fragment {
 
     private void addWordToFirestore() {
         String mail = sharedPreferences.getString("Email","");
-        firestoreManager.addTextCollaction(edtAddEnglish.getText().toString().trim(),edtAddThai.getText().toString().trim()
-                ,mail,spinner.getSelectedItem().toString(),getActivity());
+
+        //Add To Firestore
+        firestoreManager.addTextCollaction(
+                edtAddEnglish.getText().toString().trim(),
+                edtAddThai.getText().toString().trim(),
+                mail,
+                spinner.getSelectedItem().toString(),
+                getActivity());
+
     }
 
     private void checkCountText() {
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dates = simpleDateFormat.format(date);
-        SharedPreferences sp = getActivity().getSharedPreferences("ADD", Context.MODE_PRIVATE);
 
-        //Log.d(TAG, sp.getString("Date","")+" "+ dates);
+        SharedPreferences sp = getActivity().getSharedPreferences("ADD", Context.MODE_PRIVATE);
+        //sp.edit().clear().commit();
+
         if (sp.getString("Date", "").trim().equals(dates)) {
             sp.edit().clear().commit();
-            //Log.d(TAG,"Not Clear");
-        } else {
-            sp.edit().clear().commit();
-            //Log.d(TAG,"Clear SharedPreference");
         }
+
+
     }
     @Override
     public void onStart() {
