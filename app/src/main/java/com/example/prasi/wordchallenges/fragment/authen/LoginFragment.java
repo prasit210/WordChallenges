@@ -194,6 +194,7 @@ public class LoginFragment extends Fragment {
 
         //Toast.makeText(getActivity(),fist_name,Toast.LENGTH_LONG).show();
         if (fist_name != null){
+
             Date date = new Date();
             SimpleDateFormat format = new SimpleDateFormat("MM/dd/YYYY HH:mm a");
             String time = format.format(date);

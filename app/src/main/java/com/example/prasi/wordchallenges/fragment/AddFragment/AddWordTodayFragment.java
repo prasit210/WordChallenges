@@ -38,7 +38,7 @@ public class AddWordTodayFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private Button button;
     private String doc;
-    private Boolean check_date;
+    private String check_date;
     private FirebaseFirestore firebaseFirestore;
     private SharedPreferences preLogin,preAdd;
     private List<FirestoreTransModel> list;
@@ -82,14 +82,14 @@ public class AddWordTodayFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        check_date = document.getBoolean(dates);
-                       if (check_date == true){
+                        check_date = document.getString(dates);
+                       if (check_date != null){
                            Log.d("Case", "check date: " + check_date);
                             showRecyclerAddToday(dates);
-                        }else {
+                        }else if(check_date == null){
                            showDialog();
                        }
-                        Log.d("Case", "DocumentSnapshot data: " + document.getBoolean(dates));
+                        Log.d("Case", "DocumentSnapshot data: ");
                     } else {
                         Log.d("Case", "No such document");
                     }
@@ -108,6 +108,7 @@ public class AddWordTodayFragment extends Fragment {
     private void showDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setMessage(getResources().getString(R.string.add_title));
+        dialog.setTitle("Message");
         dialog.setCancelable(true);
         dialog.setPositiveButton(getResources().getString(R.string.add_dialog_button_ok),
                 new DialogInterface.OnClickListener() {
@@ -162,8 +163,6 @@ public class AddWordTodayFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
 
     }
 

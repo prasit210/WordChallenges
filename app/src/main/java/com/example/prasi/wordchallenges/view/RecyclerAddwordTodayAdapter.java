@@ -34,6 +34,7 @@ public class RecyclerAddwordTodayAdapter extends RecyclerView.Adapter<RecyclerAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         FirestoreTransModel firestoreTransModel = mModel.get(position);
         //Bind Widget
+        holder.txtShow1.setText(firestoreTransModel.getTh().toString());
         holder.txtShow2.setText(firestoreTransModel.getEng().toString());
     }
 
@@ -49,8 +50,8 @@ public class RecyclerAddwordTodayAdapter extends RecyclerView.Adapter<RecyclerAd
         public ViewHolder(View view){
             super(view);
 
-            //txtShow1 = (TextView)view.findViewById(R.id.txt1);
-            txtShow2 = (TextView)view.findViewById(R.id.txt2);
+            txtShow1 = (TextView)view.findViewById(R.id.txtThai);
+            txtShow2 = (TextView)view.findViewById(R.id.txtEng);
             //txtShow3 = (TextView)view.findViewById(R.id.txt3);
 
         }

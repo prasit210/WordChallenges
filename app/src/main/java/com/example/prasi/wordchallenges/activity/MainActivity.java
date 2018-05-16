@@ -14,14 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.bumptech.glide.Glide;
 import com.example.prasi.wordchallenges.R;
-import com.example.prasi.wordchallenges.fragment.AddFragment.AddWordFragment;
 import com.example.prasi.wordchallenges.fragment.AddFragment.AddWordPagerFragment;
-import com.example.prasi.wordchallenges.fragment.GGWP;
 import com.example.prasi.wordchallenges.fragment.checkword.WordHistory;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -126,11 +123,13 @@ public class MainActivity extends LocalizationActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_addword) {
+
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.containerMain,
                             new AddWordPagerFragment())
                     .commit();
+
         } else if (id == R.id.nav_checkword) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -138,11 +137,7 @@ public class MainActivity extends LocalizationActivity
                             new WordHistory())
                     .commit();
         } else if (id == R.id.nav_example) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.containerMain,
-                            new GGWP())
-                    .commit();
+
         } else if (id == R.id.nav_achivement) {
 
         } else if (id == R.id.nav_setting) {

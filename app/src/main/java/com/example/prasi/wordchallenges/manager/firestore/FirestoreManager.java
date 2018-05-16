@@ -132,9 +132,8 @@ public class FirestoreManager extends FirestorePersonalModel {
     }
 
     private void addDateBoolean(String dates,String email){
-
-        Map<String,Boolean> date = new HashMap<>();
-        date.put(dates,true);
+        Map<String,String> date = new HashMap<>();
+        date.put(dates,"true");
         firestore.collection("WordChallenge")
                 .document("Users")
                 .collection(email)
